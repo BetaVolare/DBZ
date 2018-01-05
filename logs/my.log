@@ -1,0 +1,16 @@
+2018-01-04 17:10:34,493  INFO Application:48 ---- Starting Application on DESKTOP-2U83J5J with PID 19676 (C:\Users\Administrator\Desktop\didispace-SpringBoot-Learning-master\DBZ\target\classes started by Administrator in C:\Users\Administrator\Desktop\didispace-SpringBoot-Learning-master\DBZ)
+2018-01-04 17:10:34,495  INFO Application:666 ---- No active profile set, falling back to default profiles: default
+2018-01-04 17:10:39,993  INFO Application:57 ---- Started Application in 5.74 seconds (JVM running for 15.138)
+2018-01-04 17:11:52,151  INFO Application:48 ---- Starting Application on DESKTOP-2U83J5J with PID 12080 (C:\Users\Administrator\Desktop\didispace-SpringBoot-Learning-master\DBZ\target\classes started by Administrator in C:\Users\Administrator\Desktop\didispace-SpringBoot-Learning-master\DBZ)
+2018-01-04 17:11:52,155  INFO Application:666 ---- No active profile set, falling back to default profiles: default
+2018-01-04 17:11:59,252  INFO Application:57 ---- Started Application in 7.487 seconds (JVM running for 11.855)
+2018-01-04 17:12:37,573  INFO Application:48 ---- Starting Application on DESKTOP-2U83J5J with PID 24452 (C:\Users\Administrator\Desktop\didispace-SpringBoot-Learning-master\DBZ\target\classes started by Administrator in C:\Users\Administrator\Desktop\didispace-SpringBoot-Learning-master\DBZ)
+2018-01-04 17:12:37,575 DEBUG Application:51 ---- Running with Spring Boot v1.3.2.RELEASE, Spring v4.2.4.RELEASE
+2018-01-04 17:12:37,576  INFO Application:666 ---- No active profile set, falling back to default profiles: default
+2018-01-04 17:12:43,073  INFO Application:57 ---- Started Application in 5.78 seconds (JVM running for 15.69)
+2018-01-04 17:16:21,295  INFO Application:48 ---- Starting Application on DESKTOP-2U83J5J with PID 24096 (C:\Users\Administrator\Desktop\didispace-SpringBoot-Learning-master\DBZ\target\classes started by Administrator in C:\Users\Administrator\Desktop\didispace-SpringBoot-Learning-master\DBZ)
+2018-01-04 17:16:21,297  INFO Application:666 ---- No active profile set, falling back to default profiles: default
+2018-01-04 17:16:27,578  INFO Application:57 ---- Started Application in 6.536 seconds (JVM running for 10.239)
+2018-01-04 17:18:16,228  INFO Application:48 ---- Starting Application on DESKTOP-2U83J5J with PID 5520 (C:\Users\Administrator\Desktop\didispace-SpringBoot-Learning-master\DBZ\target\classes started by Administrator in C:\Users\Administrator\Desktop\didispace-SpringBoot-Learning-master\DBZ)
+2018-01-04 17:18:16,231  INFO Application:666 ---- No active profile set, falling back to default profiles: default
+2018-01-04 17:18:23,414  INFO Application:57 ---- Started Application in 7.686 seconds (JVM running for 12.044)
