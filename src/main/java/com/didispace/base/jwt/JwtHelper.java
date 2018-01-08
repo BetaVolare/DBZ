@@ -26,20 +26,23 @@ public class JwtHelper {
         }
     }
 
-    public static String createJWT(String name, String userId, String role,
+    public static String createJWT(String name, String Id, String role,
                                    String audience, String issuer, long TTLMillis, String base64Security)
     {
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
+
         //生成签名密钥
         byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(base64Security);
         Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
+
         //添加构成JWT的参数
         JwtBuilder builder = Jwts.builder().setHeaderParam("typ", "JWT")
                 .claim("role", role)
                 .claim("unique_name", name)
-                .claim("userid", userId)
+                .claim("userid", Id)
                 .setIssuer(issuer)
                 .setAudience(audience)
                 .signWith(signatureAlgorithm, signingKey);
@@ -49,6 +52,7 @@ public class JwtHelper {
             Date exp = new Date(expMillis);
             builder.setExpiration(exp).setNotBefore(now);
         }
+
         //生成JWT
         return builder.compact();
     }

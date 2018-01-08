@@ -1,9 +1,7 @@
-package com.didispace.controller;
+package com.didispace.controller.User;
 
 
-import com.didispace.base.AccessToken;
 import com.didispace.base.jwt.Audience;
-import com.didispace.base.jwt.JwtHelper;
 import com.didispace.domain.User;
 import com.didispace.service.userService;
 import config.ResponseCodeCanstants;
@@ -58,6 +56,7 @@ public class userControlloer {
     })
     @ResponseBody
     public ResponseResult save(@ApiIgnore User user){
+
         List<User> userList = new ArrayList<User>();
      if("" .equals(user.getId() ) || null != user.getId()){
          user.setUpdateTime(new Date());
@@ -67,47 +66,11 @@ public class userControlloer {
          if(user1 ==null ){
              userService.save(user);
          } else{
-             return new ResponseResult(ResponseCodeCanstants.FAILED,"改手机号已经注册");
+             return new ResponseResult(ResponseCodeCanstants.FAILED,"该手机号已经注册");
          }
      }
         userList = userService.findAll();
         return new ResponseResult(ResponseCodeCanstants.SUCCESS,userList,"success");
     }
-
-    @RequestMapping(value = {"/login"} ,method= RequestMethod.GET)
-    @ApiOperation(value = "用户登陆",notes = "用户登陆")
-    @ApiImplicitParams({
-            @ApiImplicitParam( value = "电话号", name = "phoneNumber", required = true, dataType = "Integer",paramType = "query"),
-            @ApiImplicitParam( value = "密码", name = "password", required = true, dataType = "String",paramType = "query")
-    })
-    @ResponseBody
-    public ResponseResult Login(@ApiIgnore User user){
-        User user1 = userService.getByPhoneNumber(user.getPhoneNumber());
-        if(user1 !=null){
-            if(!user.getPassword().equals(user1.getPassword())){
-                return new ResponseResult(ResponseCodeCanstants.FAILED,"密码错误");
-            }
-        }else{
-            return new ResponseResult(ResponseCodeCanstants.FAILED,"该账号不存在");
-        }
-        user1.setLastLoginTime(new Date());
-        userService.save(user1);
-        String accessToken = JwtHelper.createJWT(user1.getName()
-                , user1.getId().toString()
-                , null, audience.getClientId()
-                , audience.getName()
-                , audience.getExpiresSecond() * 1000
-                , audience.getBase64Secret());
-        AccessToken accessTokenEntity = new AccessToken();
-        accessTokenEntity.setUserId(user1.getId());
-        accessTokenEntity.setName(user1.getName());
-        accessTokenEntity.setAccess_token(accessToken);
-        accessTokenEntity.setExpires_in(audience.getExpiresSecond());
-//        accessTokenEntity.setRoleid(users.getRoleid());
-//        accessTokenEntity.setWeight(users.getWeight());
-        accessTokenEntity.setToken_type("bearer");
-        return new ResponseResult(ResponseCodeCanstants.SUCCESS,accessTokenEntity,"success");
-    }
-
 
 }
