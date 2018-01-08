@@ -48,6 +48,7 @@ public class userControlloer {
     @RequestMapping(value={"/save"}, method= RequestMethod.GET)
     @ApiOperation(value="更新用户", notes="更新用户")
     @ApiImplicitParams({
+            @ApiImplicitParam(value = "Token验证码", name = "Authorization", paramType = "header", required = true),
             @ApiImplicitParam( value = "主键", name = "id", required = false, dataType = "Integer",paramType = "query"),
             @ApiImplicitParam( value = "名称", name = "name",  required = true, dataType = "String",paramType = "query"),
             @ApiImplicitParam( value = "年龄", name = "age", required = true, dataType = "Integer",paramType = "query"),

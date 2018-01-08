@@ -81,6 +81,5 @@ public class HTTPBearerAuthorizeAttribute implements Filter {
 
     @Override
     public void destroy() {
-
     }
 }
