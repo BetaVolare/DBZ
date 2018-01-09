@@ -23,7 +23,7 @@ import java.util.*;
 @RestController
 @RequestMapping(value="/api/user")
 @ResponseBody
-public class userControlloer {
+public class UserController {
     @Autowired
     userService userService;
 
