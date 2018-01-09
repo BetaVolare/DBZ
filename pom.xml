@@ -150,12 +150,35 @@
 	</dependencies>
 	
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+	<plugins>
+		<plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<configuration>
+				<proc>none</proc>
+			</configuration>
+		</plugin>
+		<!--设置maven-war-plugins插件，否则外部依赖无法打进war包-->
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-war-plugin</artifactId>
+			<configuration>
+				<webResources>
+					<resource>
+						<directory>${project.basedir}/lib</directory>
+						<targetPath>WEB-INF/lib/</targetPath>
+						<includes>
+							<include>**/*.jar</include>
+						</includes>
+					</resource>
+				</webResources>
+			</configuration>
+		</plugin>
+	</plugins>
+</build>
 
 </project>
