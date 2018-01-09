@@ -24,6 +24,7 @@ public class mailController {
     @RequestMapping(value={"/sendMail"}, method= RequestMethod.GET)
     @ApiOperation(value="发送邮件", notes="发送邮件")
     @ApiImplicitParams({
+            @ApiImplicitParam(value = "Token验证码", name = "Authorization", paramType = "header", required = true),
             @ApiImplicitParam(value = "邮件地址", name = "mailAddress",  required = true, dataType = "String",paramType = "query"),
             @ApiImplicitParam(value = "邮件主题", name = "mailSubject",  required = true, dataType = "String",paramType = "query"),
             @ApiImplicitParam(value = "邮件内容", name = "mailText",     required = true, dataType = "String",paramType = "query"),

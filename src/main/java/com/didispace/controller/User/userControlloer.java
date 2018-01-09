@@ -21,7 +21,7 @@ import java.util.*;
 
 @Api(value = "user", description = "user模块")
 @RestController
-@RequestMapping(value="/api/user")
+@RequestMapping(value = "/api/user")
 @ResponseBody
 public class userControlloer {
     @Autowired
@@ -33,45 +33,63 @@ public class userControlloer {
 
     static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>());
 
-    @RequestMapping(value={"/findAll"}, method= RequestMethod.GET)
-    @ApiOperation(value="获取用户列表", notes="")
+    @RequestMapping(value = {"/findAll"}, method = RequestMethod.GET)
+    @ApiOperation(value = "获取用户列表", notes = "")
     @ApiImplicitParams({
             @ApiImplicitParam(value = "Token验证码", name = "Authorization", paramType = "header", required = true)
     })
     public ResponseResult getUserList() {
         List<User> r = new ArrayList<User>();
-        r=userService.findAll();
+        r = userService.findAll();
         System.out.print(r);
-        return new ResponseResult(ResponseCodeCanstants.SUCCESS,r,"success");
+        return new ResponseResult(ResponseCodeCanstants.SUCCESS, r, "success");
     }
 
-    @RequestMapping(value={"/save"}, method= RequestMethod.GET)
-    @ApiOperation(value="更新用户", notes="更新用户")
+    /**
+     * @author robocon
+     * @param user
+     * @return success or failed
+     */
+    @RequestMapping(value = {"/save"}, method = RequestMethod.GET)
+    @ApiOperation(value = "更新用户", notes = "更新用户")
     @ApiImplicitParams({
             @ApiImplicitParam(value = "Token验证码", name = "Authorization", paramType = "header", required = true),
-            @ApiImplicitParam( value = "主键", name = "id", required = false, dataType = "Integer",paramType = "query"),
-            @ApiImplicitParam( value = "名称", name = "name",  required = true, dataType = "String",paramType = "query"),
-            @ApiImplicitParam( value = "年龄", name = "age", required = true, dataType = "Integer",paramType = "query"),
-            @ApiImplicitParam( value = "电话", name = "phoneNumber", required = true, dataType = "String",paramType = "query"),
-            @ApiImplicitParam( value = "密码", name = "password", required = true, dataType = "Integer",paramType = "query")
+            @ApiImplicitParam(value = "主键", name = "id", required = false, dataType = "Integer", paramType = "query"),
+            @ApiImplicitParam(value = "名称", name = "name", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(value = "年龄", name = "age", required = true, dataType = "Integer", paramType = "query"),
+            @ApiImplicitParam(value = "电话", name = "phoneNumber", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(value = "密码", name = "password", required = true, dataType = "Integer", paramType = "query")
     })
     @ResponseBody
-    public ResponseResult save(@ApiIgnore User user){
-
-        List<User> userList = new ArrayList<User>();
-     if("" .equals(user.getId() ) || null != user.getId()){
-         user.setUpdateTime(new Date());
-         userService.save(user);
-     }else{
-         User user1 = userService.getByPhoneNumber(user.getPhoneNumber());
-         if(user1 ==null ){
-             userService.save(user);
-         } else{
-             return new ResponseResult(ResponseCodeCanstants.FAILED,"该手机号已经注册");
-         }
-     }
-        userList = userService.findAll();
-        return new ResponseResult(ResponseCodeCanstants.SUCCESS,userList,"success");
+    public ResponseResult save(@ApiIgnore User user) {
+//        List<User> userList = new ArrayList<User>();
+        if ("".equals(user.getId()) || null != user.getId()) {
+            user.setUpdateTime(new Date());
+            userService.save(user);
+        } else {
+            User user1 = userService.getByPhoneNumber(user.getPhoneNumber());
+            if (user1 == null) {
+                user.setCreateTime(new Date());
+                userService.save(user);
+            } else {
+                return new ResponseResult(ResponseCodeCanstants.FAILED, "该手机号已经注册");
+            }
+        }
+//        userList = userService.findAll();
+        return new ResponseResult(ResponseCodeCanstants.SUCCESS, user, "success");
     }
+
+    @RequestMapping(value = {"/loginout"},method = RequestMethod.GET)
+    @ApiOperation(value = "注销用户", notes = "更注销用户")
+    @ApiImplicitParams({
+            @ApiImplicitParam(value = "Token验证码", name = "Authorization", paramType = "header", required = true)
+    })
+    public ResponseResult LoginOut(){
+        //由前端清理token
+        return new ResponseResult(ResponseCodeCanstants.SUCCESS,"注销成功");
+    }
+
+
+
 
 }
