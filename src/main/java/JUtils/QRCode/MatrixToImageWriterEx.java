@@ -27,7 +27,7 @@ public class MatrixToImageWriterEx {
 	 * @param height 二维码照片高度
 	 * @return
 	 */
-	public static BitMatrix createQRCode(String content, int width, int height){
+	public  static BitMatrix createQRCode(String content, int width, int height){
 		Hashtable<EncodeHintType, Object> hints = new Hashtable<EncodeHintType, Object>();   
 		//设置字符编码
         hints.put(EncodeHintType.CHARACTER_SET, "utf-8");  
@@ -179,5 +179,6 @@ public class MatrixToImageWriterEx {
 			
 		}
 	}
-	
+
+
 }

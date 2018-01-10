@@ -52,7 +52,7 @@ public class FileUploadController {
         }
     }
 
-    @ApiOperation(value = "文件上传", notes = "文件上传")
+    @ApiOperation(value = "多文件上传", notes = "多文件上传")
     @ApiImplicitParams({
             @ApiImplicitParam(value = "Token验证码", name = "Authorization", paramType = "header"),
     })

@@ -80,9 +80,8 @@ public class UserController {
     }
 
     @RequestMapping(value = {"/loginout"},method = RequestMethod.GET)
-    @ApiOperation(value = "注销用户", notes = "更注销用户")
+    @ApiOperation(value = "注销用户", notes = "客户端清空token即可")
     @ApiImplicitParams({
-            @ApiImplicitParam(value = "Token验证码", name = "Authorization", paramType = "header", required = true)
     })
     public ResponseResult LoginOut(){
         //由前端清理token
